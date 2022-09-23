@@ -1,0 +1,76 @@
+﻿@model List<BE.Drag>
+@{
+    ViewData["Title"] = "create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section pre{
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="~/vendors/flag-icon/css/flag-icon.min.css">
+        <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/select.dataTables.min.css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="~/css/pages/data-tables.min.css">
+    <!-- END: Page Level CSS-->
+    
+}
+<!-- Highlight Table -->
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div id="highlight-table" class="card card card-default scrollspy">
+            <div class="card-content">
+                <h4 class="card-title">جدول داروها</h4>
+                <div class="row">
+                    <div class="col s12">
+                    </div>
+                    <div class="col s12">
+                        <table class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="id">ایدی دارو</th>
+                                <th data-field="name">نام دارو</th>
+                                <th data-field="edit">ویرایش</th>
+                                <th data-field="delete">حذف</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                    <td>
+
+                                        <a asp-action="edit" asp-controller="Drag" asp-route-id="@item.Id" class="waves-effect waves-light btn mb-1">
+                                            ویرایش
+
+                                        </a>
+                                    </td>
+                                    <td>
+
+                                        <a asp-action="delete" asp-controller="Drag" asp-route-id="@item.Id" class="waves-effect waves-light btn mb-1">
+                                            حذف
+
+                                        </a>
+                                    </td>
+                                        </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+   
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/js/scripts/form-validation.js"></script>
+    <!-- END PAGE LEVEL JS-->
+}

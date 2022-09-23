@@ -1,0 +1,130 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using BE
+@inject UserManager<User> usermanager
+@inject SignInManager<User> SignInManager
+@model List<pharmacy2.Models.Order.OrderDetail_Model>
+
+<main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">مقایسه محصولات<span>فروشگاه</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">مقایسه محصولات</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="container">
+                    <table class="table table-wishlist table-mobile text-center">
+                        <thead>
+                            <tr>
+                                <th>شماره سفارش</th>
+                                <th>نام دارو</th>
+                                <th>تصویر محصول</th>
+                                <th>قیمت واحد</th>
+                                <th>تعداد</th>
+                                <th>قیمت کل</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="price-col">
+                                    <div>
+                                        <h3 class="product-title text-center">
+                                            @item.OrderId
+                                            @*<a href="#">لباس شماره 1</a>*@
+                                        </h3><!-- End .product-title -->
+                                    </div><!-- End .product -->
+                                </td>
+                                <td class="price-col">
+                                    <div>
+                                        <h3 class="product-title text-center">
+                                            @item.DragName
+                                            @*<a href="#">لباس شماره 1</a>*@
+                                        </h3><!-- End .product-title -->
+                                    </div><!-- End .product -->
+                                </td>
+                            <td class="price-col">
+                                <div class="product">
+                                    <figure class="product-media">
+                                        <a href="#">
+                                            <img src="~/images/daro/@item.DragPic" alt="تصویر محصول">
+                                        </a>
+                                    </figure>
+                                </div><!-- End .product -->
+                            </td>
+                                <td class="price-col">@item.Price</td>
+                                <td class="price-col">@item.Count</td>
+                                <td class="price-col">@item.TotalPrice تومان</td>
+                           @* <td class="stock-col"><span class="in-stock">موجود</span></td>
+                            <td class="action-col">
+                                <button class="btn btn-block btn-outline-primary-2">
+                                    <i
+                                        class="icon-cart-plus"></i>افزودن به سبد خرید</button>
+                            </td>
+                            <td class="remove-col text-left">
+                                <button class="btn-remove">
+                                    <i
+                                        class="icon-close"></i></button></td>*@
+                        </tr>
+                        }
+
+                        <tr>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var user = await usermanager.FindByNameAsync(User.Identity.Name);
+
+                            if (user.Province == "خراسان رضوی")
+                            {
+                                <td>جمع کل</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    @Model.Sum(s => s.TotalPrice)+25000(هزینه پستی) تومان
+                                </td>
+                            }
+                            else
+                            {
+                                <td>جمع کل</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    @Model.Sum(s => s.TotalPrice)+35000(هزینه پستی) تومان
+                                </td>  
+                            }
+                        }
+                            </tr>
+                        </tbody>
+                    </table><!-- End .table table-wishlist -->
+                    <div class="wishlist-share">
+                        <div class="social-icons social-icons-sm mb-2">
+                            <label class="social-label">اشتراک گذاری در : </label>
+                            <a href="#" class="social-icon" title="فیسبوک" target="_blank"><i
+                                    class="icon-facebook-f"></i></a>
+                            <a href="#" class="social-icon" title="توییتر" target="_blank"><i
+                                    class="icon-twitter"></i></a>
+                            <a href="#" class="social-icon" title="اینستاگرام" target="_blank"><i
+                                    class="icon-instagram"></i></a>
+                            <a href="#" class="social-icon" title="یوتیوب" target="_blank"><i
+                                    class="icon-youtube"></i></a>
+                            <a href="#" class="social-icon" title="پینترست" target="_blank"><i
+                                    class="icon-pinterest"></i></a>
+                        </div><!-- End .soial-icons -->
+                    </div><!-- End .wishlist-share -->
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+</main><!-- End .main -->

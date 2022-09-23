@@ -1,0 +1,312 @@
+﻿
+
+@model pharmacy2.Models.Profile.Profile_Model
+
+ <main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">داشبورد<span>فروشگاه</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">داشبورد</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="dashboard">
+                    <div class="container">
+                        <div class="row">
+                            <aside class="col-md-4 col-lg-3">
+                                <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab"
+                                            href="#tab-dashboard" role="tab" aria-controls="tab-dashboard"
+                                            aria-selected="true">داشبورد</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
+                                            role="tab" aria-controls="tab-orders" aria-selected="false">سفارشات</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-downloads-link" data-toggle="tab"
+                                            href="#tab-downloads" role="tab" aria-controls="tab-downloads"
+                                            aria-selected="false">دانلود ها</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address"
+                                            role="tab" aria-controls="tab-address" aria-selected="false">آدرس</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
+                                            role="tab" aria-controls="tab-account" aria-selected="false">ویرایش حساب
+                                            کاربری</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Account" asp-action="LogOut">خروج از حساب کاربری</a>
+                                    </li>
+                                </ul>
+                            </aside><!-- End .col-lg-3 -->
+
+                            <div class="col-md-8 col-lg-9">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
+                                        aria-labelledby="tab-dashboard-link">
+                                        <p>سلام <span class="font-weight-normal text-dark">@Model.UserName</span>
+                                            <br>
+                                            شما در اینجا میتوانید <a href="#tab-orders"
+                                                class="tab-trigger-link link-underline">سفارشات خود را ببینید</a>، وضعیت
+                                            ارسال <a href="#tab-address" class="tab-trigger-link">سفارشات خود را مشاهده
+                                                کنید وآدرس خود را تغییر دهید</a>، و همچنین <a href="#tab-account"
+                                                class="tab-trigger-link">می توانید رمز عبور یا جزئیات حساب کاربری خود را
+                                                ویرایش کنید </a>.</p>
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-orders" role="tabpanel"
+                                         aria-labelledby="tab-orders-link">
+                                        <table class="table table-wishlist table-mobile">
+                        <thead>
+                            <tr>
+                                <th>شماره سفارش</th>
+                                <th>قیمت کل</th>
+                                <th>وضعیت پرداخت</th>
+                                <th>رسید پرداخت</th>
+                                <th>زمان ثبت سفارش</th>
+                                <th>جزییات سفارش</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        @foreach (var item in ViewBag.OrderViewBag)
+                        {
+                            <tr>
+                                <td class="product-col">
+                                    <div class="product">
+                                        @*<figure class="product-media">
+                                            <a href="#">
+                                                <img src="assets/images/products/table/product-1.jpg" alt="تصویر محصول">
+                                            </a>
+                                        </figure>*@
+
+                                        <h3 class="product-title">
+                                            <a href="#">@item.Id</a>
+                                        </h3><!-- End .product-title -->
+                                    </div><!-- End .product -->
+                                </td>
+                                <td class="price-col">@item.TotalPrice تومان</td>
+                                <td class="stock-col"><span class="in-stock">@item.IsFinaly</span></td>
+                                <td class="stock-col"><span class="in-stock">@item.RefId</span></td>
+                                <td class="stock-col"><span class="in-stock">@item.CreateDate</span></td>
+                                <td class="action-col">
+                                    <div class="col-6 col-lg-4 col-xl-2">
+                                        <div class="btn-wrap">
+                                            <a asp-action="OrderDetailUser" asp-controller="Order" asp-route-OrderId="@item.Id" asp-route-UserName="@Model.UserName" class="btn btn-primary btn-round">جزییات</a>
+                                        </div><!-- End .btn-wrap -->
+                                    </div><!-- End .col-md-4 col-lg-2 -->
+                                    @*<div class="dropdown">
+                                        <button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon-list-alt"></i>انتخاب گزینه ها
+                                        </button>
+
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">گزینه 1</a>
+                                            <a class="dropdown-item" href="#">گزینه 2</a>
+                                            <a class="dropdown-item" href="#">گزینه 3</a>
+                                        </div>
+                                    </div>*@
+                                </td>
+                               
+                            </tr>
+                        }
+                        @*<tr>
+                                <td class="product-col">
+                                    <div class="product">
+                                        <figure class="product-media">
+                                            <a href="#">
+                                                <img src="assets/images/products/table/product-2.jpg" alt="تصویر محصول">
+                                            </a>
+                                        </figure>
+
+                                        <h3 class="product-title">
+                                            <a href="#">لباس زنانه آبی</a>
+                                        </h3><!-- End .product-title -->
+                                    </div><!-- End .product -->
+                                </td>
+                                <td class="price-col">76,000 تومان</td>
+                                <td class="stock-col"><span class="in-stock">موجود</span></td>
+                                <td class="action-col">
+                                    <button class="btn btn-block btn-outline-primary-2"><i
+                                            class="icon-cart-plus"></i>افزودن به سبد خرید</button>
+                                </td>
+                                <td class="remove-col text-left"><button class="btn-remove"><i
+                                            class="icon-close"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="product-col">
+                                    <div class="product">
+                                        <figure class="product-media">
+                                            <a href="#">
+                                                <img src="assets/images/products/table/product-3.jpg" alt="تصویر محصول">
+                                            </a>
+                                        </figure>
+
+                                        <h3 class="product-title">
+                                            <a href="#">کیف زنانه با بند زنجیری</a>
+                                        </h3><!-- End .product-title -->
+                                    </div><!-- End .product -->
+                                </td>
+                                <td class="price-col">52,000 تومان</td>
+                                <td class="stock-col"><span class="out-of-stock">ناموجود</span></td>
+                                <td class="action-col">
+                                    <button class="btn btn-block btn-outline-primary-2 disabled">ناموجود</button>
+                                </td>
+                                <td class="remove-col text-left"><button class="btn-remove"><i
+                                            class="icon-close"></i></button></td>
+                            </tr>*@
+                        </tbody>
+                    </table><!-- End .table table-wishlist -->
+                                        <a asp-controller="Drag" asp-action="Drags" class="btn btn-outline-primary-2">
+                                            <span>رفتن به
+                                                فروشگاه</span><i class="icon-long-arrow-left"></i></a>
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-downloads" role="tabpanel"
+                                        aria-labelledby="tab-downloads-link">
+                                        <p>دانلود جدیدی وجود ندارد</p>
+                                        <a href="category.html" class="btn btn-outline-primary-2"><span>رفتن به
+                                                فروشگاه</span><i class="icon-long-arrow-left"></i></a>
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-address" role="tabpanel"
+                                        aria-labelledby="tab-address-link">
+                                        <p>آدرسی که اینجا ثبت می کنید به صورت پیش فرض برای ارسال محصولات به شما استفاده
+                                            می شود.</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card card-dashboard">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">آدرس شما</h3><!-- End .card-title -->
+
+                                                        <p>@Model.UserName<br>
+                                                            @Model.Name @Model.LastName<br>
+                                                        @Model.PhoneNumber<br>
+                                                        @Model.Province<br>
+                                                            @Model.City<br>
+                                                            @Model.Address<br>
+                                                            @Model.Email<br>
+                                                            @*<a href="#">ویرایش <i class="icon-edit"></i></a></p>*@
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .card-dashboard -->
+                                            </div><!-- End .col-lg-12 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-account" role="tabpanel"
+                                        aria-labelledby="tab-account-link">
+                                        <form asp-action="ChangeProfile" asp-controller="Profile"  class="formValidate0" id="formValidate0" method="post" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>نام *</label>
+                                                    <input asp-for="Name" value="@Model.Name" type="text" class="form-control" required>
+                                                </div><!-- End .col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <label>نام خانوادگی *</label>
+                                                    <input asp-for="LastName" value="@Model.LastName" type="text" class="form-control" required>
+                                                </div><!-- End .col-sm-6 -->
+                                            </div><!-- End .row -->
+
+                                            <label>نام نمایش *</label>
+                                            <input asp-for="UserName" value="@Model.UserName" type="text" class="form-control" required>
+                                            <small class="form-text">این نام در قسمت بازدیدها، نظرات و حساب کاربری شما
+                                                نمایش داده می شود.</small>
+                                            
+                                            
+                                            
+                                            <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>استان *</label>
+                                                        <div class="form-group select-wrapper">
+                                                            <select asp-for="Province" id="sltProvince"  class="form-control form-control--sm" required>
+                                                                <option value="0">لطفا استان را انتخاب نمایید</option>
+                                                                @foreach (var item in ViewBag.ProvinceViewBag)
+                                                                {
+                                                                <option value="@item.Id">@item.Name</option>
+                                                                }
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label>شهر *</label>
+                                                        <div class="form-group select-wrapper">
+                                                            <select asp-for="City"  id="cityid" class="form-control form-control--sm" required>
+                                                                @*<option value="0">لطفا شهر را انتخاب نمایید</option>*@
+                                                             @*   @foreach (var item1 in ViewBag.CityViewBag)
+                                                                {
+                                                                    <option value="@item1.Id">@item1.Name</option>
+                                                                }*@
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+
+                                            @*<label>نام شهر *</label>
+                                            <input asp-for="City" value="@Model.City" type="text" class="form-control" required>*@
+                                            <label>آدرس *</label>
+                                            <input asp-for="Address" value="@Model.Address" type="text" class="form-control" required>
+                                            
+                                            <label>شماره تماس *</label>
+                                            <input asp-for="PhoneNumber" value="@Model.PhoneNumber" type="text" class="form-control" required>
+                                            <label>ایمیل *</label>
+                                            <input asp-for="Email" value="@Model.Email" type="email" class="form-control" required>
+
+                                            @*<label>پسورد جدید</label>
+                                            <input type="password" class="form-control">
+
+                                            <label>تکرار پسورد جدید</label>
+                                            <input type="password" class="form-control mb-2">*@
+
+                                            <button type="submit" class="btn btn-outline-primary-2 float-right">
+                                                <span>ذخیره تغییرات</span>
+                                                <i class="icon-long-arrow-left"></i>
+                                            </button>
+                                        </form>
+                                    </div><!-- .End .tab-pane -->
+                                </div>
+                            </div><!-- End .col-lg-9 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .dashboard -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+@section Scripts{
+    <script>
+        $("#sltProvince").on('change', function (e) {
+            var getid = $('#sltProvince').val();
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetCity","Profile")',
+                data: { id: getid },
+                success: function (result) {
+                    if (result.status == "success") {
+                        $('#cityid').empty();
+                        $.each(result.cityList, function (i) {
+                            $('#cityid').append($("<option></option>")
+                                .val(result.cityList[i].id).html(result.cityList[i].cname));
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+}

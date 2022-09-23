@@ -1,0 +1,338 @@
+﻿@using BE;
+@using BLL;
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContexAccessor
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<User> usermanager
+@inject SignInManager<User> SignInManager
+@model Order_List
+<main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">سبد خرید<span>فروشگاه</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+<div class="page-content">
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    @*<form asp-controller="Order" asp-action="UpdateBasket"  class="formValidate0" id="formValidate0" method="post" enctype="multipart/form-data">*@
+
+                    <table class="table table-cart table-mobile">
+                        <thead>
+                        <tr>
+                            <th>محصول</th>
+                            <th>قیمت</th>
+                            <th>تعداد</th>
+                            <th>مجموع</th>
+                            <th>به روز زسانی تعداد</th>
+                            <th>حذف</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @{
+                            var DragIds = new List<Order_List>();
+                            var updateDragIds = new List<Order_List>();
+
+                            if (httpContexAccessor.HttpContext.Session.GetString("basket") != null)
+                            {
+                                DragIds = JsonConvert.DeserializeObject<List<Order_List>>(httpContexAccessor.HttpContext.Session.GetString("basket"));
+                            }
+                            var bld = new BLL_Drag();
+                            var Drags = bld.SearchByListId(DragIds);
+
+                            foreach (var Drag in Drags)
+                            {
+                                <tr>
+                                    <td class="product-col">
+                                        <div class="product">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="~/images/daro/@Drag.Pic"
+                                                         alt="تصویر محصول">
+                                                </a>
+                                            </figure>
+
+                                            <h3 class="product-title">
+                                                <a >@Drag.Name</a>
+                                            </h3><!-- End .product-title -->
+                                        </div><!-- End .product -->
+                                    </td>
+                                    <td class="price-col">@Drag.Price</td>
+                                        @{
+                                            var O_L = DragIds.First(p => p.DragId == Drag.Id);
+                                            <input type="hidden" id="DragId" name="DragId" value="@Drag.Id"/>
+                                    <td class="quantity-col">
+                                            <div class="cart-product-quantity">
+                                                <input asp-for="Number" id="@O_L.DragId" type="number" class="form-control" value="@O_L.Number" min="1" max="10"
+                                                       step="1" data-decimals="0" required>
+                                            </div><!-- End .cart-product-quantity -->
+                                    </td>
+                                        }
+                                    @{
+                                        var sum = @Drag.Price * @O_L.Number;
+                                        <td class="total-col">@sum</td>
+                                    }
+                                        <td class="updateRow" id="updateRow">
+                                            <button  class="btn-remove" >
+                                                <i
+                                                    class="icon-refresh">
+
+                                                </i>
+                                            </button>
+                                        </td>
+
+                                        <td class="remove-col">
+                                        <a asp-action="RemoveDragBasket" asp-controller="Order" asp-route-DragId="@Drag.Id" class="btn-remove">
+                                            <i
+                                                class="icon-close">
+
+                                            </i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table><!-- End .table table-wishlist -->
+                    @*</form>*@
+
+                    <div class="cart-bottom">
+                        <div class="cart-discount">
+                            <form action="#">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" required placeholder="کد تخفیف">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary-2" type="submit">
+                                            <i
+                                                class="icon-long-arrow-left"></i></button>
+                                    </div><!-- .End .input-group-append -->
+                                </div><!-- End .input-group -->
+                            </form>
+                        </div><!-- End .cart-discount -->
+
+                        @*<button asp-controller="Order" asp-action="UpdateBasket" id="btn-refresh" class="btn btn-outline-dark-2">
+                            <span>به روز رسانی سبد خرید</span>
+                            <i
+                                class="icon-refresh"></i>
+                        </button>*@
+                    </div><!-- End .cart-bottom -->
+                </div><!-- End .col-lg-9 -->
+                <aside class="col-lg-3">
+                    <div class="summary summary-cart">
+                        <h3 class="summary-title">جمع سبد خرید</h3><!-- End .summary-title -->
+
+                        <table class="table table-summary">
+                            @{
+                                var SUM = 0;
+                                var Weight = 0;
+                                var SUMPOST = 0;
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    var user = await usermanager.FindByNameAsync(User.Identity.Name);
+
+                                    if (user.Province == "خراسان رضوی")
+                                    {
+                                        foreach (var Drag in Drags)
+                                        {
+                                            foreach (var item in DragIds)
+                                            {
+                                                if (Drag.Id == item.DragId)
+                                                {
+                                                    SUM = SUM + Drag.Price * item.Number;
+                                                    Weight = Weight + Drag.Weight * item.Number;
+                                                }
+                                            }
+                                        }
+                                 SUMPOST = SUM + 25000;
+                                    }
+                                    else
+                                    {
+                                        foreach (var Drag in Drags)
+                                        {
+                                            foreach (var item in DragIds)
+                                            {
+                                                if (Drag.Id == item.DragId)
+                                                {
+                                                    SUM = SUM + Drag.Price * item.Number;
+                                                    Weight = Weight + Drag.Weight * item.Number;
+                                                }
+                                            }
+                                        }
+                                         SUMPOST = SUM + 35000;
+
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var Drag in Drags)
+                                    {
+                                        foreach (var item in DragIds)
+                                        {
+                                            if (Drag.Id == item.DragId)
+                                            {
+                                                SUM = SUM + Drag.Price * item.Number;
+                                                Weight = Weight + Drag.Weight * item.Number;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            <tbody>
+                            <tr class="summary-subtotal">
+                                <td>جمع کل سبد خرید : </td>
+                                <td class="text-left">@SUM تومان</td>
+                            </tr><!-- End .summary-subtotal -->
+                            <tr class="summary-shipping">
+                                <td>شیوه ارسال : </td>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                           @*<tr class="summary-shipping-row">
+                                <td>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="free-shipping" name="shipping"
+                                               class="custom-control-input">
+                                        <label class="custom-control-label" for="free-shipping">ارسال
+                                            رایگان</label>
+                                    </div><!-- End .custom-control -->
+                                </td>
+                                <td class="text-left">0,000 تومان</td>
+                            </tr>*@<!-- End .summary-shipping-row -->
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                var user = await usermanager.FindByNameAsync(User.Identity.Name);
+
+                                if (user.Province == "خراسان رضوی")
+                                {
+                                    <tr class="summary-shipping-row">
+                                    <td>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="standart-shipping" name="shipping"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="standart-shipping">پست
+                                                سفارشی :</label>
+                                        </div><!-- End .custom-control -->
+                                    </td>
+                                    <td class="text-left">25000 تومان</td>
+                                </tr>
+                                <!-- End .summary-shipping-row -->
+
+                               @* <tr class="summary-shipping-row">
+                                    <td>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="express-shipping" name="shipping"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="express-shipping">پست
+                                                پیشتاز :</label>
+                                        </div><!-- End .custom-control -->
+                                    </td>
+                                    <td class="text-left">35000 تومان</td>
+                                </tr>*@
+                                <!-- End .summary-shipping-row -->
+                            }
+                                else
+                                {
+                                    <tr class="summary-shipping-row">
+                                        <td>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="standart-shipping" name="shipping"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label" for="standart-shipping">پست
+                                                    سفارشی :</label>
+                                            </div><!-- End .custom-control -->
+                                        </td>
+                                        <td class="text-left">35000 تومان</td>
+                                    </tr>
+                                    <!-- End .summary-shipping-row -->
+
+                                    @*<tr class="summary-shipping-row">
+                                        <td>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="express-shipping" name="shipping"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label" for="express-shipping">پست
+                                                    پیشتاز :</label>
+                                            </div><!-- End .custom-control -->
+                                        </td>
+                                        <td class="text-left">45000 تومان</td>
+                                    </tr>*@
+                                    <!-- End .summary-shipping-row -->
+                                }
+                            }
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                var user =await usermanager.FindByNameAsync(User.Identity.Name);
+                                <tr class="summary-shipping-estimate">
+                                    <td>@user.Province @user.City @user.Address<br>
+                                        @user.PhoneNumber<br>
+                                        <a asp-controller="Profile" asp-action="Profile" >تغییر آدرس</a></td>
+                                    <td>&nbsp;</td>
+                                </tr><!-- End .summary-shipping-estimate -->
+                            }
+                            else
+                            {
+                                <tr class="summary-shipping-estimate">
+                                    <td>
+                                        <a asp-controller="Account" asp-action="Login" >برای نمایش ادرس لطفا وارد حساب کاربری خود شوید</a></td>
+                                    <td>&nbsp;</td>
+                                </tr><!-- End .summary-shipping-estimate -->
+                            }
+                            <tr class="summary-total">
+                                        <td>مبلغ قابل پرداخت :</td>
+                                        <td class="text-left">@SUMPOST تومان</td>
+                                    </tr>
+                                    <!-- End .summary-total -->
+                            </tbody>
+                        </table><!-- End .table table-summary -->
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a asp-action="Payment" asp-controller="Payment" class="btn btn-outline-primary-2 btn-order btn-block">رفتن
+                                به صفحه پرداخت</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Payment" asp-controller="Payment" class="btn btn-outline-primary-2 btn-order btn-block">رفتن
+                                به صفحه پرداخت</a>
+                        }
+                        </div><!-- End .summary -->
+
+                    <a asp-controller="Drag" asp-action="Drags" class="btn btn-outline-dark-2 btn-block mb-3">
+                        <span>ادامه
+                            خرید</span><i class="icon-refresh"></i></a>
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .cart -->
+</div><!-- End .page-content -->
+</main><!-- End .main -->
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".updateRow").click(function()
+            {
+                currentrow=$(this).closest("tr");
+                number=currentrow.find("td:eq(2)").find('.form-control').val();
+                id=currentrow.find("td:eq(2)").find('.form-control').attr('id');
+                // alert(id);
+                $.get("/Order/UpdateBasket",{DragId: id,Number:number});
+                alert(number);
+                location.reload();
+            });
+           
+        });
+    </script>
+}

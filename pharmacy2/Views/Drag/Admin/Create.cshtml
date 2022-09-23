@@ -1,0 +1,211 @@
+﻿
+@model CreateDragViewModel
+@{
+    ViewData["Title"] = "create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section pre{
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+    <title>متریالایز | الگوی منوی تاریک عمودی | فرم اعتبارسنجی </title>
+    <link rel="apple-touch-icon" href="~/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- BEGIN: VENDOR CSS-->
+<link rel="stylesheet" type="text/css" href="~/vendors/vendors.min.css">
+<link rel="stylesheet" href="~/vendors/select2/select2.min.css" type="text/css">
+<link rel="stylesheet" href="~/vendors/select2/select2-materialize.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/flag-icon/css/flag-icon.min.css">
+    <!-- END: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="~/css-rtl/style-rtl.min.css">
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="~/css-rtl/themes/vertical-dark-menu-template/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="~/css-rtl/themes/vertical-dark-menu-template/style.min.css">
+<link rel="stylesheet" type="text/css" href="~/css-rtl/pages/form-select2.min.css">
+
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/css-rtl/custom/custom.css">
+<!-- END: Custom CSS-->
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+}
+<div class="row">
+                            <div class="col s12">
+                                <div id="html-validations" class="card card-tabs">
+                                    <div class="card-content">
+                                        <div class="card-title">
+                                            <div class="row">
+                                                <div class="col s12 m6 l10">
+                                                    <h4 class="card-title">ثبت اطلاعات داروها HTML</h4>
+                                                </div>
+                                                <div class="col s12 m6 l2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="html-view-validations">
+                                            <form asp-action="create" asp-controller="Drag"  class="formValidate0" id="formValidate0" method="post" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">نام فارسی*</label>
+                                                        <input class="validate" required id="uname0" name="Name" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">نام انگلیسی*</label>
+                                                        <input class="validate" required id="uname0" name="En_Name" type="text">
+                                                    </div>
+                                                     <div class="input-field col s12">
+                                                        <label for="uname0">معرفی*</label>
+                                                        <input class="validate" required id="uname0" name="Introduction" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">قیمت*</label>
+                                                        <input class="validate" required id="uname0" name="Price" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">درصد تخفیف*</label>
+                                                        <input class="validate" required id="uname0" name="Off_Price_Perset" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">قیمت تخفیف*</label>
+                                                        <input class="validate" required id="uname0" name="Off_Price" type="text">
+                                                    </div>
+                                                    
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">تاریخ تولد*</label>
+                                                        <input class="validate" required id="uname0" name="Pro_Date" type="date">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">تاریخ انقضا*</label>
+                                                        <input class="validate" required id="uname0" name="Exp_Date" type="date">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col m6 s12">
+                                                            <h6 class="card-title">برند </h6>
+                                                            <div class="input-field">
+                                                                <select class="select2  browser-default" name="BrandId">
+                                                                    @foreach (var item in ViewBag.BrandViewBag)
+                                                                    {
+                                                                        <option value="@item.Id">@item.Name @item.En_Name</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">تعداد*</label>
+                                                        <input class="validate" required id="uname0" name="Number" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">بیشترین تعداد سفارش*</label>
+                                                        <input class="validate" required id="uname0" name="MaxOrder" type="text">
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">کمترین تعداد سفارش*</label>
+                                                        <input class="validate" required id="uname0" name="MinOrder" type="text">
+                                                    </div>
+                                                    
+                                                    <div class="input-field col s12">
+                                                        <label for="uname0">وزن (گرم)*</label>
+                                                        <input class="validate" required id="uname0" name="Weight" type="text">
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <div class="card">
+                                                                <div class="card-content">
+                                                                    <h4 class="card-title">توضیحات</h4>
+                                                                    <label for="uname0">توضیحات*</label>
+                                                                    <textarea  name="Detaile" id="editor1" rows="10" cols="80">
+                                                                  This is my textarea to be replaced with CKEditor 4.
+                                                         </textarea>
+                                                                </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="row">
+                                                        <div class="col s12">
+                                                            <div class="card">
+                                                                <div class="card-content">
+                                                                    <h4 class="card-title">توضیحات بیشتر</h4>
+                                                                    <textarea  name="More_Detaile" id="editor2" rows="10" cols="80">
+                                                                  This is my textarea to be replaced with CKEditor 4.
+                                                         </textarea>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                    <div class="col m6">
+                                                        <h6>دسته یا دسته ها را انتخاب کنید</h6>
+                                                        <div class="input-field">
+                                                            <select id="select2 browser-default" name="CategoryIds" class="select2 browser-default" multiple="multiple">
+                                                                @foreach (var item in ViewBag.CategoryViewBag)
+                                                                {
+                                                                    if (item.Id>=2 && item.Id<=7)
+                                                                    {
+                                                                        <optgroup label="@item.Name">
+                                                                            @foreach (var item2 in ViewBag.CategoryViewBag)
+                                                                            {
+                                                                                if (item2.ParentId==item.Id)
+                                                                                {
+                                                                            <option value="@item2.Id">@item2.Name @item2.Id</option>
+                                                                                }
+                                                                            }
+                                                                        </optgroup>
+                                                                        
+                                                                    }
+
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class=" input-file col s12">
+                                                        <label class="contact-input" for="fn">عکس</label>
+                                                        <input id="email" type="file"name="Pic" />
+                                                         @*<div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p><p class="dropify-error">Ooops, something wrong appended.</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" id="input-file-now" class="dropify" data-default-file=""><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>*@
+                                                    </div>
+                                                    <div class="input-field col s12">
+                                                        <button id="btnsend" class="btn waves-effect waves-light right iransans" type="submit" name="action">ارسال
+															<i class="material-icons right">send</i>
+														</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+@section script{
+    <!-- BEGIN VENDOR JS-->
+    <script src="~/js/vendors.min.js"></script>
+    <script src="~/vendors/select2/select2.full.min.js"></script>
+    <script src="~/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/js/plugins.min.js"></script>
+    <script src="~/js/search.min.js"></script>
+    <script src="~/js-rtl/custom/custom-script-rtl.min.js"></script>
+    <script src="~/js/scripts/customizer.min.js"></script>
+    <script src="~/js-rtl/scripts/form-select2-rtl.min.js"></script>
+    <script src="~/js/scripts/form-validation.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1',
+            {
+                language: 'fa'
+            });
+        CKEDITOR.replace('editor2',
+            {
+                language: 'fa'
+            });
+    </script>
+}

@@ -1,0 +1,405 @@
+﻿
+@section pre{
+@*<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>قالب Molla - قالب بوت استرپ فروشگاهی</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    @*<link rel="apple-touch-icon" sizes="180x180" href="~/images/icons/apple-touch-icon.png">*@
+    @*<link rel="icon" type="image/png" sizes="32x32" href="~/images/icons/favicon-32x32.png">*@
+    @*<link rel="icon" type="image/png" sizes="16x16" href="~/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="~/images/icons/site.webmanifest">
+    <link rel="mask-icon" href="~/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="~/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="~/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="~/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="~/css/plugins/magnific-popup/magnific-popup.css">
+    <!-- Main CSS File -->       
+    <link rel="stylesheet" href="~/css/style.css">*@
+    <link rel="stylesheet" href="~/css/plugins/nouislider/nouislider.css">
+}
+@*product-extended*@
+@model dynamic
+<div>
+     <div class="container">
+                    <div class="product-details-top mb-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-gallery">
+                                    <figure class="product-main-image">
+                                        <img id="product-zoom" src="~/images/daro/@Model.Drag.Pic" width="458" height="458"
+                                            data-zoom-image="~/images/daro/@Model.Drag.Pic"
+                                            alt="تصویر محصول">
+
+                                        <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                            <i class="icon-arrows"></i>
+                                        </a>
+                                    </figure><!-- End .product-main-image -->
+
+                                    @*<div id="product-zoom-gallery" class="product-image-gallery">
+                                        <a class="product-gallery-item" href="#"
+                                            data-image="assets/images/products/single/extended/1.jpg"
+                                            data-zoom-image="assets/images/products/single/extended/1-big.jpg">
+                                            <img src="assets/images/products/single/extended/1-small.jpg"
+                                                alt="توضیحات تصویر">
+                                        </a>
+
+                                        <a class="product-gallery-item" href="#"
+                                            data-image="assets/images/products/single/extended/2.jpg"
+                                            data-zoom-image="assets/images/products/single/extended/2-big.jpg">
+                                            <img src="assets/images/products/single/extended/2-small.jpg"
+                                                alt="توضیحات تصویر">
+                                        </a>
+
+                                        <a class="product-gallery-item active" href="#"
+                                            data-image="assets/images/products/single/extended/3.jpg"
+                                            data-zoom-image="assets/images/products/single/extended/3-big.jpg">
+                                            <img src="assets/images/products/single/extended/3-small.jpg"
+                                                alt="توضیحات تصویر">
+                                        </a>
+
+                                        <a class="product-gallery-item" href="#"
+                                            data-image="assets/images/products/single/extended/4.jpg"
+                                            data-zoom-image="assets/images/products/single/extended/4-big.jpg">
+                                            <img src="assets/images/products/single/extended/4-small.jpg"
+                                                alt="product back">
+                                        </a>
+
+                                    </div>*@<!-- End .product-image-gallery -->
+                                </div><!-- End .product-gallery -->
+                            </div><!-- End .col-md-6 -->
+
+                            <div class="col-md-6">
+                                <div class="product-details">
+                                    <h1 class="product-title">@Model.Drag.Name</h1>
+                                    <div class="product-content">
+                                        <p>@Model.Drag.En_Name
+                                        </p>
+                                    </div>
+                                    <!-- End .product-title -->
+
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                       @* <a class="ratings-text" href="#product-review-link" id="review-link">( 2 نظر
+                                            )</a>*@
+                                    </div><!-- End .rating-container -->
+
+                                    <div class="product-price">
+                                        @Model.Drag.Price تومان
+                                    </div><!-- End .product-price -->
+
+                                    <div class="product-content">
+                                        <p>@Model.Drag.Introduction
+                                        </p>
+                                    </div><!-- End .product-content -->
+                                    @*<div class="details-filter-row details-row-size">
+                                        <label>رنگ : </label>
+
+                                        <div class="product-nav product-nav-dots">
+                                            <a href="#" class="active" style="background: #eab656;"><span
+                                                    class="sr-only">نام رنگ</span></a>
+                                            <a href="#" style="background: #333333;"><span class="sr-only">نام
+                                                    رنگ</span></a>
+                                            <a href="#" style="background: #3a588b;"><span class="sr-only">نام
+                                                    رنگ</span></a>
+                                            <a href="#" style="background: #caab97;"><span class="sr-only">نام
+                                                    رنگ</span></a>
+                                        </div><!-- End .product-nav -->
+                                    </div>*@<!-- End .details-filter-row -->
+
+                                   @* <div class="details-filter-row details-row-size">
+                                        <label for="size">سایز : </label>
+                                        <div class="select-custom">
+                                            <select name="size" id="size" class="form-control">
+                                                <option value="#" selected="selected">سایز را انتخاب کنید</option>
+                                                <option value="s">کوچک (Small)</option>
+                                                <option value="m">متوسط (Medium)</option>
+                                                <option value="l">بزرگ (Large)</option>
+                                                <option value="xl">خیلی بزرگ (XLarge)</option>
+                                            </select>
+                                        </div><!-- End .select-custom -->
+
+                                        <a href="#" class="size-guide"><i class="icon-th-list"></i>راهنمای اندازه</a>
+                                    </div>*@<!-- End .details-filter-row -->
+                                    <form asp-action="AddToBasket" asp-controller="Order" asp-route-DragId="@Model.Drag.Id"  class="formValidate0" id="formValidate0" method="post" enctype="multipart/form-data">
+
+
+                                    
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="qty">تعداد : </label>
+                                        <div class="product-details-quantity">
+                                            <input asp-for-Number="Number"  type="number" id="qty" name="number" class="form-control" value="1" min="@Model.Drag.MinOrder"
+                                                max="@Model.Drag.MaxOrder" step="1" data-decimals="0" required>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
+                                    <div class="product-details-action">
+                                        <button type="submit" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></button>
+                                        
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="لیست علاقه مندی"><span>افزودن
+                                                    به
+                                                    لیست علاقه مندی</span></a>
+                                            <a href="#" class="btn-product btn-compare" title="مقایسه"><span>افزودن به
+                                                    لیست مقایسه</span></a>
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div><!-- End .product-details-action -->
+                                    </form>
+
+                                    <div class="product-details-footer">
+                                       @* <div class="product-cat text-center">
+                                            <span>دسته بندی : </span>
+                                            <a href="#">زنانه</a>،
+                                            <a href="#">لباس</a>،
+                                            <a href="#">زرد</a>
+                                        </div>*@<!-- End .product-cat -->
+
+                                       @* <div class="social-icons social-icons-sm">
+                                            <span class="social-label">اشتراک گذاری : </span>
+                                            <a href="#" class="social-icon" title="فیسبوک" target="_blank"><i
+                                                    class="icon-facebook-f"></i></a>
+                                            <a href="#" class="social-icon" title="توییتر" target="_blank"><i
+                                                    class="icon-twitter"></i></a>
+                                            <a href="#" class="social-icon" title="اینستاگرام" target="_blank"><i
+                                                    class="icon-instagram"></i></a>
+                                            <a href="#" class="social-icon" title="پینترست" target="_blank"><i
+                                                    class="icon-pinterest"></i></a>
+                                        </div>*@
+                                    </div><!-- End .product-details-footer -->
+                                </div><!-- End .product-details -->
+                            </div><!-- End .col-md-6 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .product-details-top -->
+         </div><!-- End .container -->
+         
+     <div class="product-details-tab product-details-extended">
+                    <div class="container">
+                        <ul class="nav nav-pills justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="product-desc-link" data-toggle="tab"
+                                    href="#product-desc-tab" role="tab" aria-controls="product-desc-tab"
+                                    aria-selected="true">توضیحات</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab"
+                                    role="tab" aria-controls="product-info-tab" aria-selected="false">اطلاعات بیشتر</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-shipping-link" data-toggle="tab"
+                                    href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab"
+                                    aria-selected="false">ارسال و بازگشت</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-review-link" data-toggle="tab"
+                                    href="#product-review-tab" role="tab" aria-controls="product-review-tab"
+                                    aria-selected="false">نظرات (2)</a>
+                            </li>
+                        </ul>
+                    </div><!-- End .container -->
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
+                            aria-labelledby="product-desc-link">
+                            <div class="product-desc-content">
+                                <div class="product-desc-row bg-image"
+                                    style="background-image: url('assets/images/products/single/extended/bg-1.jpg')">
+                                    <div class="container">
+                                        <div class="row justify-content-start">
+                                            <div class="col-sm-6 col-lg-4">
+
+                                                @Html.Raw(Model.Drag.Detaile)
+                                                @* <h2>اطلاعات محصول</h2>
+                                                <ul>
+                                                    <li>لورم ایپسوم متن سختگی</li>
+                                                    <li>لورم ایپسوم متن</li>
+                                                    <li>لورم ایپسوم</li>
+                                                    <li>لورم</li>
+                                                    <li>لورم ایپسوم متن سختگی با تولید سادگی</li>
+                                                </ul>*@
+                                            </div><!-- End .col-lg-4 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .container -->
+                                </div><!-- End .product-desc-row -->
+
+                                <div class="product-desc-row bg-image text-white"
+                                    style="background-image: url('assets/images/products/single/extended/bg-2.jpg')">
+                                    <div class="container">
+                                        @*<div class="row">
+                                            <div class="col-md-6">
+                                                <h2>طراحی</h2>
+                                                <p>لورم ایپسوم متن سختگی با تولید سادگی نامفهوم لورم ایپسوم متن سختگی با
+                                                    تولید سادگی نامفهوم لورم ایپسوم متن سختگی با تولید سادگی نامفهوملورم
+                                                    ایپسوم متن سختگی با تولید سادگی نامفهوملورم ایپسوم متن سختگی با
+                                                    تولید سادگی نامفهوملورم ایپسوم متن سختگی با تولید سادگی نامفهوملورم
+                                                    ایپسوم متن سختگی با تولید سادگی نامفهوم. </p>
+                                            </div><!-- End .col-md-6 -->
+
+                                            <div class="col-md-6">
+                                                <h2>مراقبت از پا</h2>
+                                                <p>لورم ایپسوم متن سختگی با تولید سادگی نامفهوم لورم ایپسوم متن سختگی با
+                                                    تولید سادگی نامفهوم لورم ایپسوم متن سختگی با تولید سادگی نامفهوملورم
+                                                    ایپسوم متن سختگی با تولید سادگی نامفهوم .
+                                                </p>
+                                            </div><!-- End .col-md-6 -->
+                                        </div>*@<!-- End .row -->
+
+                                        <div class="mb-5"></div><!-- End .mb-3 -->
+
+                                        <img src="assets/images/products/single/extended/sign.png" alt=""
+                                            class="ml-auto mr-auto">
+                                    </div><!-- End .container -->
+                                </div><!-- End .product-desc-row -->
+
+                                <div class="product-desc-row bg-image"
+                                    style="background-image: url('assets/images/products/single/extended/bg-3.jpg')">
+                                    <div class="container">
+                                        <div class="row justify-content-start">
+                                           @* <div class="col-lg-5">
+                                                <blockquote>
+                                                    <p>“ لورم ایپسوم <br>متن سختگی با تولید سادگی نامفهوم ”
+                                                    </p>
+
+                                                    <cite>– سخن بزرگان</cite>
+                                                </blockquote>
+                                                <p>لورم ایپسوم متن سختگی با تولید سادگی نامفهوم لورم ایپسوم متن سختگی با
+                                                    تولید سادگی نامفهوم لورم ایپسوم متن سختگی با تولید سادگی نامفهوم.
+                                                </p>
+                                            </div>*@<!-- End .col-lg-5 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .container -->
+                                </div><!-- End .product-desc-row -->
+                            </div><!-- End .product-desc-content -->
+                        </div><!-- .End .tab-pane -->
+                        <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
+                            aria-labelledby="product-info-link">
+                            <div class="product-desc-content">
+                                <div class="container">
+                                    @*<h3>اطلاعات</h3>
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
+                                        سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوملورم ایپسوم متن
+                                        ساختگی با تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید سادگی نامفهوملورم
+                                        ایپسوم متن ساختگی با تولید سادگی نامفهوم. </p>
+
+                                    <h3>اطلاعات بیشتر</h3>
+                                    <ul>
+                                        <li>لورم ایپسوم متن ساختگی</li>
+                                        <li>لورم ایپسوم متن ساختگی با تولید سادگی</li>
+                                        <li>لورم ایپسوم</li>
+                                        <li>لورم ایپسوم متن ساختگی </li>
+                                        <li>لورم ایپسوم متن ساختگی با تولید سادگی</li>
+                                        <li> ارتفاع: 31سانتی متر; عرض: 32سانتی متر; عمق: 12سانتی متر</li>
+                                    </ul>
+
+                                    <h3>سایز</h3>
+                                    <p>تک سایز</p>*@
+                                </div><!-- End .container -->
+                            </div><!-- End .product-desc-content -->
+                        </div><!-- .End .tab-pane -->
+                        <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
+                            aria-labelledby="product-shipping-link">
+                            <div class="product-desc-content">
+                                <div class="container">
+                                  
+                                </div><!-- End .container -->
+                            </div><!-- End .product-desc-content -->
+                        </div><!-- .End .tab-pane -->
+                    @* <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
+                            aria-labelledby="product-review-link">
+                            <div class="reviews">
+                                <div class="container">
+                                    <h3>Reviews (2)</h3>
+                                    <div class="review">
+                                        <div class="row no-gutters">
+                                            <div class="col-auto">
+                                                <h4><a href="#">کاربر 1</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 80%;"></div>
+                                                        <!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                </div><!-- End .rating-container -->
+                                                <span class="review-date">4 روز پیش</span>
+                                            </div><!-- End .col -->
+                                            <div class="col-12">
+                                                <h4>عالی، سایز فوق العاده</h4>
+
+                                                <div class="review-content">
+                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم،لورم ایپسوم متن
+                                                        ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
+                                                        سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم!</p>
+                                                </div><!-- End .review-content -->
+
+                                                <div class="review-action">
+                                                    <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
+                                                    <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
+                                                </div><!-- End .review-action -->
+                                            </div><!-- End .col-auto -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .review -->
+
+                                    <div class="review">
+                                        <div class="row no-gutters">
+                                            <div class="col-auto">
+                                                <h4><a href="#">کاربر 2</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 100%;"></div>
+                                                        <!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                </div><!-- End .rating-container -->
+                                                <span class="review-date">2 روز پیش</span>
+                                            </div><!-- End .col -->
+                                            <div class="col-12">
+                                                <h4>خیلی عالی</h4>
+
+                                                <div class="review-content">
+                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
+                                                        ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
+                                                        سادگی نامفهوم.</p>
+                                                </div><!-- End .review-content -->
+
+                                                <div class="review-action">
+                                                    <a href="#"><i class="icon-thumbs-up"></i>مثبت (0)</a>
+                                                    <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
+                                                </div><!-- End .review-action -->
+                                            </div><!-- End .col-auto -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .review -->
+                                </div><!-- End .container -->
+                            </div><!-- End .reviews -->
+                        </div><!-- .End .tab-pane -->
+                        *@
+                    </div><!-- End .tab-content -->
+                </div><!-- End .product-details-tab -->
+
+                 
+</div>
+
+
+@section Scripts{
+<!-- Plugins JS File -->
+@*<script src="~/js/jquery.min.js"></script>
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/jquery.hoverIntent.min.js"></script>
+<script src="~/js/jquery.waypoints.min.js"></script>
+<script src="~/js/superfish.min.js"></script>
+<script src="~/js/owl.carousel.min.js"></script>*@
+<script src="~/js/bootstrap-input-spinner.js"></script>
+<script src="~/js/jquery.elevateZoom.min.js"></script>
+<script src="~/js/bootstrap-input-spinner.js"></script>
+<script src="~/js/jquery.magnific-popup.min.js"></script>
+<!-- Main JS File -->
+}
+

@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220826131939_brand.cs" />
+    <Compile Remove="Migrations\20220826131939_brand.Designer.cs" />
+    <Compile Remove="Migrations\20220826132901_brand1.cs" />
+    <Compile Remove="Migrations\20220826132901_brand1.Designer.cs" />
+    <Compile Remove="Migrations\20220826133218_brand2.cs" />
+    <Compile Remove="Migrations\20220826133218_brand2.Designer.cs" />
+    <Compile Remove="Migrations\20220826133436_brand3.cs" />
+    <Compile Remove="Migrations\20220826133436_brand3.Designer.cs" />
+    <Compile Remove="Migrations\20220826134201_brand4.cs" />
+    <Compile Remove="Migrations\20220826134201_brand4.Designer.cs" />
+    <Compile Remove="Migrations\20220826135400_brand5.cs" />
+    <Compile Remove="Migrations\20220826135400_brand5.Designer.cs" />
+    <Compile Remove="Migrations\20220826135546_brand6.cs" />
+    <Compile Remove="Migrations\20220826135546_brand6.Designer.cs" />
+    <Compile Remove="Migrations\20220826135830_brand7.cs" />
+    <Compile Remove="Migrations\20220826135830_brand7.Designer.cs" />
+    <Compile Remove="Migrations\20220831110226_use-order1.cs" />
+    <Compile Remove="Migrations\20220831110226_use-order1.Designer.cs" />
+    <Compile Remove="Migrations\20220831111318_user-order2.cs" />
+    <Compile Remove="Migrations\20220831111318_user-order2.Designer.cs" />
+    <Compile Remove="Migrations\20220831111656_user-order4.cs" />
+    <Compile Remove="Migrations\20220831111656_user-order4.Designer.cs" />
+    <Compile Remove="Migrations\20220901115717_user-order4.cs" />
+    <Compile Remove="Migrations\20220901115717_user-order4.Designer.cs" />
+    <Compile Remove="Migrations\20220904123416_orderadree.cs" />
+    <Compile Remove="Migrations\20220904123416_orderadree.Designer.cs" />
+    <Compile Remove="Migrations\20220904123848_orderadress.cs" />
+    <Compile Remove="Migrations\20220904123848_orderadress.Designer.cs" />
+    <Compile Remove="Migrations\20220904124047_orderadress.cs" />
+    <Compile Remove="Migrations\20220904124047_orderadress.Designer.cs" />
+    <Compile Remove="Migrations\20220905045822_orderdetaile.cs" />
+    <Compile Remove="Migrations\20220905045822_orderdetaile.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.22" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj" />
+  </ItemGroup>
+
+</Project>
