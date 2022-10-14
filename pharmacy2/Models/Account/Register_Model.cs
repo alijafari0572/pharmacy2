@@ -15,7 +15,7 @@ namespace pharmacy2.Models
         public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "نام ایمیل")]
+        [Display(Name = "ایمیل")]
         [EmailAddress]
         [Remote("IsEmailInUse", "Account")]
         public string Email { get; set; }
